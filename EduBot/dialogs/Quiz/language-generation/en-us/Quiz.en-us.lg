@@ -1,0 +1,20 @@
+[import](common.lg)
+
+# SendActivity_N7CHlB()
+[Activity
+    Text = Starting Quiz?
+    SuggestedActions = cancel
+]
+
+# SendActivity_WYTBff()
+- Error in getting questions from remote
+# SendActivity_65KyhL()
+- API call success  ${dialog.api_response.content}. Questions are  ${dialog.api_response.content.questionsList.count}. First is ${dialog.api_response.content.questionsList[0].prompt} 
+# ChoiceInput_Prompt_bsgfiP()
+- Question ${dialog.foreach.index + 1} is ${dialog.foreach.value.prompt}
+# SendActivity_RL6Txu()
+-  You answered ${user.selected}
+# SendActivity_TujnqL()
+- Your answer is correct. Explaination Link
+# SendActivity_QCe48W()
+- Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}
