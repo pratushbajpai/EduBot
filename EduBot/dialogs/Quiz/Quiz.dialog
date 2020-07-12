@@ -132,19 +132,11 @@
           "activity": "${SendActivity_ivzW6v()}"
         },
         {
-          "$kind": "Microsoft.DeleteProperties",
+          "$kind": "Microsoft.CancelAllDialogs",
           "$designer": {
-            "id": "5038Ap"
+            "id": "kTXmER"
           },
-          "properties": [
-            "dialog.api_response"
-          ]
-        },
-        {
-          "$kind": "Microsoft.EndDialog",
-          "$designer": {
-            "id": "DJabvS"
-          }
+          "activityProcessed": true
         }
       ]
     }

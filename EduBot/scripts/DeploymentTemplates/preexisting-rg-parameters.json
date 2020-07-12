@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "appId": {
-            "value": ""
+            "value": "a537d3dd-bdc2-45fe-bda0-385527cc0a2d"
         },
         "appSecret": {
-            "value": ""
+            "value": "i_DxdSt08597zJV933w7e_s4_NrQ2dh~u-"
         },
         "botId": {
-            "value": ""
+            "value": "QuizMoBot"
         },
         "botSku": {
-            "value": ""
+            "value": "F1"
         },
         "newAppServicePlanName": {
-            "value": ""
+            "value": "QuizMoBot_AppServicePlan_Test"
         },
         "newAppServicePlanSku": {
             "value": {
@@ -27,13 +27,13 @@
             }
         },
         "appServicePlanLocation": {
-            "value": ""
+            "value": "West US"
         },
         "existingAppServicePlan": {
             "value": ""
         },
         "newWebAppName": {
-            "value": ""
+            "value": "QuizMoBotService"
         }
     }
 }

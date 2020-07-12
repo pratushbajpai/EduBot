@@ -17,7 +17,6 @@ C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Questions
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\QuestionsAdmin.TagHelpers.output.cache
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\QuestionsAdmin.RazorCoreGenerate.cache
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -114,3 +113,4 @@ C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Questions
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\QuestionsAdmin.MvcApplicationPartsAssemblyInfo.cache
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
 C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Home\Add.cshtml.g.cs
+C:\github\CS6460\QuestionsAdmin\QuestionsAdmin\obj\Debug\netcoreapp3.1\Razor\Views\Home\Chat.cshtml.g.cs

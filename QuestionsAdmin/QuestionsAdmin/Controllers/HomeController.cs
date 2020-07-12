@@ -32,7 +32,7 @@ namespace QuestionsAdmin.Controllers
             return View(new Questions { QuestionsList = questions.QuestionsList});
         }
 
-        public IActionResult Privacy()
+        public IActionResult Chat()
         {
             return View();
         }
