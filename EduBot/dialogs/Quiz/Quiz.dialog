@@ -27,9 +27,9 @@
             "id": "lVsds0"
           },
           "method": "GET",
-          "url": "=settings.quizSource",
           "resultProperty": "dialog.api_response",
-          "responseType": "json"
+          "responseType": "json",
+          "url": "${settings.quizSource}/AvailableChapters"
         },
         {
           "$kind": "Microsoft.IfCondition",
@@ -39,77 +39,142 @@
           "condition": "dialog.api_response.statusCode == 200",
           "actions": [
             {
-              "$kind": "Microsoft.Foreach",
+              "$kind": "Microsoft.ChoiceInput",
               "$designer": {
-                "id": "jGImPc"
+                "id": "ZLIshN"
               },
-              "index": "dialog.foreach.index",
-              "value": "dialog.foreach.value",
-              "itemsProperty": "dialog.api_response.content.questionsList",
-              "actions": [
-                {
-                  "$kind": "Microsoft.ChoiceInput",
-                  "$designer": {
-                    "id": "bsgfiP"
-                  },
-                  "defaultLocale": "en-us",
-                  "disabled": false,
-                  "maxTurnCount": 3,
-                  "alwaysPrompt": false,
-                  "allowInterruptions": true,
-                  "prompt": "${ChoiceInput_Prompt_bsgfiP()}",
-                  "choiceOptions": {
-                    "includeNumbers": true,
-                    "inlineOrMore": ", or ",
-                    "inlineOr": " or ",
-                    "inlineSeparator": ","
-                  },
-                  "property": "user.selected",
-                  "style": "heroCard",
-                  "choices": "dialog.foreach.value.options",
-                  "outputFormat": "index",
-                  "recognizerOptions": {
-                    "recognizeOrdinals": true
-                  }
-                },
+              "defaultLocale": "en-us",
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "choiceOptions": {
+                "includeNumbers": true,
+                "inlineOrMore": ", or ",
+                "inlineOr": " or ",
+                "inlineSeparator": ", "
+              },
+              "prompt": "${ChoiceInput_Prompt_ZLIshN()}",
+              "style": "heroCard",
+              "choices": "dialog.api_response.content",
+              "outputFormat": "index",
+              "property": "user.selected"
+            },
+            {
+              "$kind": "Microsoft.DeleteProperty",
+              "$designer": {
+                "id": "gbdg8a"
+              },
+              "property": "dialog.api_response"
+            },
+            {
+              "$kind": "Microsoft.HttpRequest",
+              "$designer": {
+                "id": "GdLK1h"
+              },
+              "method": "GET",
+              "url": "${settings.quizSource}/GetByChapter/${user.selected}",
+              "responseType": "json",
+              "resultProperty": "dialog.api_response"
+            },
+            {
+              "$kind": "Microsoft.DeleteProperty",
+              "$designer": {
+                "id": "JHEOqF"
+              },
+              "property": "user.selected"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "WsLd5b"
+              },
+              "condition": "dialog.api_response.statusCode == 200",
+              "elseActions": [
                 {
                   "$kind": "Microsoft.SendActivity",
                   "$designer": {
-                    "id": "RL6Txu"
+                    "id": "5g9RQx"
                   },
-                  "activity": "${SendActivity_RL6Txu()}"
-                },
+                  "activity": "${SendActivity_5g9RQx()}"
+                }
+              ],
+              "actions": [
                 {
-                  "$kind": "Microsoft.IfCondition",
+                  "$kind": "Microsoft.Foreach",
                   "$designer": {
-                    "id": "izsBz1"
+                    "id": "9UbvW9"
                   },
-                  "condition": "user.selected == dialog.foreach.value.answerIndex",
+                  "index": "dialog.foreach.index",
+                  "value": "dialog.foreach.value",
+                  "itemsProperty": "dialog.api_response.content.questionsList",
                   "actions": [
                     {
-                      "$kind": "Microsoft.SendActivity",
+                      "$kind": "Microsoft.ChoiceInput",
                       "$designer": {
-                        "id": "TujnqL"
+                        "id": "vv6OlT"
                       },
-                      "activity": "${SendActivity_TujnqL()}"
-                    }
-                  ],
-                  "elseActions": [
+                      "defaultLocale": "en-us",
+                      "disabled": false,
+                      "maxTurnCount": 3,
+                      "alwaysPrompt": false,
+                      "allowInterruptions": true,
+                      "prompt": "${ChoiceInput_Prompt_vv6OlT()}",
+                      "choiceOptions": {
+                        "includeNumbers": true,
+                        "inlineOrMore": ", or ",
+                        "inlineOr": " or ",
+                        "inlineSeparator": ","
+                      },
+                      "property": "user.selected",
+                      "style": "heroCard",
+                      "choices": "dialog.foreach.value.options",
+                      "outputFormat": "index",
+                      "recognizerOptions": {
+                        "recognizeOrdinals": true,
+                        "recognizeNumbers": true
+                      }
+                    },
                     {
                       "$kind": "Microsoft.SendActivity",
                       "$designer": {
-                        "id": "QCe48W"
+                        "id": "fSV2Bv"
                       },
-                      "activity": "${SendActivity_QCe48W()}"
+                      "activity": "${SendActivity_fSV2Bv()}"
+                    },
+                    {
+                      "$kind": "Microsoft.IfCondition",
+                      "$designer": {
+                        "id": "n9b3b6"
+                      },
+                      "condition": "user.selected == dialog.foreach.value.answerIndex",
+                      "actions": [
+                        {
+                          "$kind": "Microsoft.SendActivity",
+                          "$designer": {
+                            "id": "SXDYT5"
+                          },
+                          "activity": "${SendActivity_SXDYT5()}"
+                        }
+                      ],
+                      "elseActions": [
+                        {
+                          "$kind": "Microsoft.SendActivity",
+                          "$designer": {
+                            "id": "g5oD3H"
+                          },
+                          "activity": "${SendActivity_g5oD3H()}"
+                        }
+                      ]
+                    },
+                    {
+                      "$kind": "Microsoft.DeleteProperty",
+                      "$designer": {
+                        "id": "x2C6go"
+                      },
+                      "property": "user.selected"
                     }
                   ]
-                },
-                {
-                  "$kind": "Microsoft.DeleteProperty",
-                  "$designer": {
-                    "id": "a5CGHy"
-                  },
-                  "property": "user.selected"
                 }
               ]
             }

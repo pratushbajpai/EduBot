@@ -1,0 +1,60 @@
+{
+    "questionsList": [
+        {
+            "id": "id1",
+            "prompt": "Who was Gallelio?",
+            "chapter":1,
+            "optionValues": "Astrologer|Choreographer|Actor|Dancer",
+            "explaination": "Galileo di Vincenzo Bonaulti de Galilei[2] ([ɡaliˈlɛːo ɡaliˈlɛi]; 15 February 1564 – 8 January 1642) was an Italian astronomer, physicist and engineer, sometimes described as a polymath, from Pisa.[3] Galileo has been called the \"father of observational astronomy\",[4] the \"father of modern physics\",[5][6] the \"father of the scientific method\",[7] and the \"father of modern science\".[8] https://en.wikipedia.org/wiki/Galileo_Galilei",
+            "options": [
+                "Astrologer",
+                "Choreographer",
+                "Actor",
+                "Dancer"
+            ],
+            "answerIndex": 0
+        },
+        {
+            "id": "id2",
+            "prompt": "Who is Superman?",
+            "chapter":1,
+            "optionValues": "Astrologer|SuperHero|Actor|Dancer",
+            "explaination": "Superman is a fictional superhero. The character was created by writer Jerry Siegel and artist Joe Shuster, and first appeared in the comic book Action Comics #1 (cover-dated June 1938 and published April 18, 1938).[1] The character regularly appears in comic books published by DC Comics, and has been adapted to a number of radio serials, movies, and television shows.\r\nhttps://en.wikipedia.org/wiki/Superman",
+            "options": [
+                "Astrologer",
+                "SuperHero",
+                "Actor",
+                "Dancer"
+            ],
+            "answerIndex": 1
+        },
+        {
+            "id": "id 4",
+            "prompt": "Who dies in latest star wars movie",
+            "chapter":2,
+            "optionValues": "Princess Lia|Obi Won|R2D2|James Cameroon",
+            "explaination": "Star Wars: The Rise of Skywalker (also known as Star Wars: Episode IX – The Rise of Skywalker) is a 2019 American epic space opera film produced, co-written, and directed by J. J. Abrams. It is the third installment of the Star Wars sequel trilogy, following The Force Awakens (2015) and The Last Jedi (2017), and the final episode of the nine-part \"Skywalker saga.\"[a] It was produced by Lucasfilm and Abrams' production company Bad Robot Productions and was distributed by Walt Disney Studios Motion Pictures. The film's ensemble cast includes Carrie Fisher,[b] Mark Hamill, Adam Driver, Daisy Ridley, John Boyega, Oscar Isaac, Anthony Daniels, Naomi Ackie, Domhnall Gleeson, Richard E. Grant, Lupita Nyong'o, Keri Russell, Joonas Suotamo, Kelly Marie Tran, Ian McDiarmid, and Billy Dee Williams.\r\nhttps://en.wikipedia.org/wiki/Star_Wars:_The_Rise_of_Skywalker",
+            "options": [
+                "Princess Lia",
+                "Obi Won",
+                "R2D2",
+                "James Cameroon"
+            ],
+            "answerIndex": 0
+        },
+        {
+            "id": "id5",
+            "prompt": "What is Pi",
+            "chapter":2,
+            "optionValues": "Archimedes' Constant|Movie Charatcer|March 14|Italian FlatbreadEat",
+            "explaination": "The number π (/paɪ/) is a mathematical constant. It is defined as the ratio of a circle's circumference to its diameter, and it also has various equivalent definitions. It appears in many formulas in all areas of mathematics and physics. It is approximately equal to 3.14159. It has been represented by the Greek letter \"π\" since the mid-18th century, and is spelled out as \"pi\". It is also referred to as Archimedes' constant.\r\nhttps://en.wikipedia.org/wiki/Pi",
+            "options": [
+                "Archimedes' Constant",
+                "Movie Charatcer",
+                "March 14",
+                "Italian FlatbreadEat"
+            ],
+            "answerIndex": 0
+        }
+    ]
+}

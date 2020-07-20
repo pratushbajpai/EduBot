@@ -1,0 +1,13 @@
+QuestionsAdmin/.vs/*
+QuestionsAdmin/QuestionsAdmin/bin/*
+QuestionsAdmin/QuestionsAdmin/obj/*
+*.[Oo]bj
+*.user
+*.aps
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+[Bb]uild/
