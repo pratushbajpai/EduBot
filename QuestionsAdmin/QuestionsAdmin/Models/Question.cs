@@ -12,6 +12,10 @@ namespace QuestionsAdmin.Models
 
         public string Prompt { get; set; }
 
+        public int Chapter { get; set; }
+
+        public string Explaination { get; set; }
+
         public string OptionValues { get; set; }
 
         public List<String> Options 

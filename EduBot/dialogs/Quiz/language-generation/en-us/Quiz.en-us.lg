@@ -9,14 +9,33 @@
 # SendActivity_WYTBff()
 - Error in getting questions from remote
 
-# ChoiceInput_Prompt_bsgfiP()
-- Question ${dialog.foreach.index + 1} is ${dialog.foreach.value.prompt}
-# SendActivity_RL6Txu()
--  You answered ${dialog.foreach.value.options[user.selected]}
-# SendActivity_TujnqL()
-- Your answer is correct. Explaination Link
-# SendActivity_QCe48W()
-- Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}
+
+
+
 
 # SendActivity_ivzW6v()
 - Thank you for taking the quiz.
+
+# ChoiceInput_Prompt_ZLIshN()
+- Select a Chapter 
+# SendActivity_5g9RQx()
+-Error in getting questions from remote
+
+
+# ChoiceInput_Prompt_MUKVhn()
+- Question ${dialog.foreach.index + 1} is ${dialog.foreach.value.prompt}
+# SendActivity_bQpNzs()
+-  You answered ${dialog.foreach.value.options[user.selected]}
+# SendActivity_6DMnUo()
+- Your answer is correct. Explaination : ${dialog.foreach.value.explaination}
+# SendActivity_qwJMAs()
+- Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}
+
+# ChoiceInput_Prompt_vv6OlT()
+- Question ${dialog.foreach.index + 1} is ${dialog.foreach.value.prompt}
+# SendActivity_fSV2Bv()
+-  You answered ${dialog.foreach.value.options [user.selected]}
+# SendActivity_SXDYT5()
+- Your answer is correct. Explaination : ${dialog.foreach.value.explaination}
+# SendActivity_g5oD3H()
+- Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}

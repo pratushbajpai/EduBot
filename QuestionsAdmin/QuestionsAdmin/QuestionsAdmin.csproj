@@ -10,4 +10,14 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="InitialQuestions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="InitialQuestions\questions">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -38,11 +38,16 @@ namespace QuestionsAdmin.Repository
 
         public Questions GetQuestions()
         {
+
+            if(blobConnectionString.Equals("test"))
+            {
+                return GetInitialQuestions();
+            }
+
             BlobClient blobClient;
-            
             blobContainerClient = new BlobContainerClient(blobConnectionString, questionBlobContainer);
             blobClient = blobContainerClient.GetBlobClient(questionsBlob);
-            if(blobClient.Exists())
+            if (blobClient.Exists())
             {
                 //blob exists - download
                 var downloadedBlob = blobClient.Download();
@@ -62,7 +67,7 @@ namespace QuestionsAdmin.Repository
                 {
                     blobClient.Upload(ms, properties);
                 }
-            }    
+            }
             return InMemoryQuestions;
         }
 
@@ -94,57 +99,68 @@ namespace QuestionsAdmin.Repository
          
         public Questions GetInitialQuestions()
         {
-            Questions questions = new Questions()
-            {
-                QuestionsList = new List<Question>()
-               {
-                  new Question()
-                  {
-                      Id = "id1",
-                      Prompt = "Who was Gallelio?",
-                      AnswerIndex = 0,
-                      OptionValues = "Astrologer|Choreographer|Actor|Dancer"
-                      //Options = new List<string>()
-                      //{
-                      //    "Astrologer",
-                      //    "Choreographer",
-                      //    "Actor",
-                      //    "Dancer"
-                      //}
-                  },
-                  new Question()
-                  {
-                      Id = "id2",
-                      Prompt = "Who is Superman?",
-                      AnswerIndex = 1,
-                      OptionValues = "Astrologer|SuperHero|Actor|Dancer"
-                      //Options = new List<string>()
-                      //{
-                      //    "Astrologer",
-                      //    "SuperHero",
-                      //    "Actor",
-                      //    "Dancer"
-                      //}
-                  },
-                  new Question()
-                  {
-                      Id = "id3",
-                      Prompt = "Who destroyed half the universe recently?",
-                      AnswerIndex = 2,
-                      OptionValues = "IronMan|Thor|Thanos|Corona Virus"
-                      //Options = new List<string>()
-                      //{
-                      //    "IronMan",
-                      //    "Thor",
-                      //    "Thanos",
-                      //    "Corona Virus"
-                      //}
-                  },
+            var questions  = JsonConvert.DeserializeObject<Questions>(File.ReadAllText(QuestionsFile));
 
-               }
-            };
+            /*            Questions questions = new Questions()
+                        {
+                            QuestionsList = new List<Question>()
+                           {
+                              new Question()
+                              {
+                                  Id = "id1",
+                                  Prompt = "Who was Gallelio?",
+                                  AnswerIndex = 0,
+                                  OptionValues = "Astrologer|Choreographer|Actor|Dancer"
+                                  //Options = new List<string>()
+                                  //{
+                                  //    "Astrologer",
+                                  //    "Choreographer",
+                                  //    "Actor",
+                                  //    "Dancer"
+                                  //}
+                              },
+                              new Question()
+                              {
+                                  Id = "id2",
+                                  Prompt = "Who is Superman?",
+                                  AnswerIndex = 1,
+                                  OptionValues = "Astrologer|SuperHero|Actor|Dancer"
+                                  //Options = new List<string>()
+                                  //{
+                                  //    "Astrologer",
+                                  //    "SuperHero",
+                                  //    "Actor",
+                                  //    "Dancer"
+                                  //}
+                              },
+                              new Question()
+                              {
+                                  Id = "id3",
+                                  Prompt = "Who destroyed half the universe recently?",
+                                  AnswerIndex = 2,
+                                  OptionValues = "IronMan|Thor|Thanos|Corona Virus"
+                                  //Options = new List<string>()
+                                  //{
+                                  //    "IronMan",
+                                  //    "Thor",
+                                  //    "Thanos",
+                                  //    "Corona Virus"
+                                  //}
+                              },
+
+                           }
+                        };*/
 
             return questions;
+        }
+
+        private static string QuestionsFile
+        {
+            get
+            {
+                var assemblyDirectory = Path.GetDirectoryName(typeof(Questions).Assembly.Location);
+                return Path.Combine(assemblyDirectory, "InitialQuestions", "questions");
+            }
         }
 
     }
