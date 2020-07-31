@@ -7,7 +7,6 @@
       "id": "xVJZiq"
     }
   },
-  "autoEndDialog": true,
   "defaultResultProperty": "dialog.result",
   "triggers": [
     {
@@ -69,13 +68,6 @@
           "cardNoMatchResponse": "Thanks for the feedback.",
           "top": 3,
           "isTest": false
-        },
-        {
-          "$kind": "Microsoft.SendActivity",
-          "$designer": {
-            "id": "eoKQFQ"
-          },
-          "activity": "${SendActivity_eoKQFQ()}"
         }
       ]
     },
@@ -116,16 +108,13 @@
   ],
   "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
   "generator": "edubot.lg",
+  "autoEndDialog": true,
   "recognizer": {
     "$kind": "Microsoft.RegexRecognizer",
     "intents": [
       {
         "intent": "Quiz",
         "pattern": "quiz|questions|1|ask"
-      },
-      {
-        "intent": "Cancel",
-        "pattern": "cancel"
       }
     ]
   }

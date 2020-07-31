@@ -15,6 +15,40 @@
       },
       "actions": [
         {
+          "$kind": "Microsoft.OAuthInput",
+          "$designer": {
+            "id": "tMLhYu"
+          },
+          "timeout": 900000,
+          "maxTurnCount": 3,
+          "allowInterruptions": true,
+          "text": "Please Login",
+          "title": "Login",
+          "connectionName": "microsoft",
+          "property": "dialog.token"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "42d0d2"
+          },
+          "method": "GET",
+          "url": "https://graph.microsoft.com/oidc/userinfo",
+          "headers": {
+            "Host": "graph.microsoft.com",
+            "Authorization": "Bearer ${dialog.token.token}"
+          },
+          "responseType": "json",
+          "resultProperty": "user.api_response"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "OJTKnC"
+          },
+          "activity": "${SendActivity_OJTKnC()}"
+        },
+        {
           "$kind": "Microsoft.SendActivity",
           "$designer": {
             "id": "N7CHlB"
@@ -29,7 +63,7 @@
           "method": "GET",
           "resultProperty": "dialog.api_response",
           "responseType": "json",
-          "url": "${settings.quizSource}/AvailableChapters"
+          "url": "${settings.quizSource}/api/Bot/AvailableChapters"
         },
         {
           "$kind": "Microsoft.IfCondition",
@@ -61,6 +95,26 @@
               "property": "user.selected"
             },
             {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "LuNNlr"
+              },
+              "assignments": [
+                {
+                  "value": "=user.api_response.content.email",
+                  "property": "user.email"
+                },
+                {
+                  "property": "user.name",
+                  "value": "=user.api_response.content.name"
+                },
+                {
+                  "property": "user.chapter",
+                  "value": "=user.selected"
+                }
+              ]
+            },
+            {
               "$kind": "Microsoft.DeleteProperty",
               "$designer": {
                 "id": "gbdg8a"
@@ -73,7 +127,7 @@
                 "id": "GdLK1h"
               },
               "method": "GET",
-              "url": "${settings.quizSource}/GetByChapter/${user.selected}",
+              "url": "${settings.quizSource}/api/Bot/GetByChapterForUser/${user.email}/${user.chapter}",
               "responseType": "json",
               "resultProperty": "dialog.api_response"
             },
@@ -101,25 +155,122 @@
               ],
               "actions": [
                 {
+                  "$kind": "Microsoft.IfCondition",
+                  "$designer": {
+                    "id": "3Fc7OC"
+                  },
+                  "condition": "dialog.api_response.content.lastTaken",
+                  "actions": [
+                    {
+                      "$kind": "Microsoft.SendActivity",
+                      "$designer": {
+                        "id": "qZoATw"
+                      },
+                      "activity": "${SendActivity_qZoATw()}"
+                    },
+                    {
+                      "$kind": "Microsoft.ConfirmInput",
+                      "$designer": {
+                        "id": "6geG95"
+                      },
+                      "defaultLocale": "en-us",
+                      "disabled": false,
+                      "maxTurnCount": 3,
+                      "alwaysPrompt": false,
+                      "allowInterruptions": false,
+                      "choiceOptions": {
+                        "includeNumbers": true,
+                        "inlineOrMore": ", or ",
+                        "inlineOr": " or ",
+                        "inlineSeparator": ", "
+                      },
+                      "style": "heroCard",
+                      "prompt": "${ConfirmInput_Prompt_6geG95()}",
+                      "property": "user.confirmed"
+                    },
+                    {
+                      "$kind": "Microsoft.IfCondition",
+                      "$designer": {
+                        "id": "FIiPGP"
+                      },
+                      "condition": "user.confirmed",
+                      "elseActions": [
+                        {
+                          "$kind": "Microsoft.SendActivity",
+                          "$designer": {
+                            "id": "RPpNQe"
+                          },
+                          "activity": "${SendActivity_RPpNQe()}"
+                        },
+                        {
+                          "$kind": "Microsoft.DeleteProperties",
+                          "$designer": {
+                            "id": "kqXX1S"
+                          },
+                          "properties": [
+                            "user.confirmed",
+                            "dialog.api_response",
+                            "user.email",
+                            "user.chapter",
+                            "user.correctquestions",
+                            "user.totalquestions"
+                          ]
+                        },
+                        {
+                          "$kind": "Microsoft.CancelAllDialogs",
+                          "$designer": {
+                            "id": "iag9uu"
+                          },
+                          "activityProcessed": true
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "$kind": "Microsoft.SetProperties",
+                  "$designer": {
+                    "id": "NGzVm1"
+                  },
+                  "assignments": [
+                    {
+                      "property": "user.totalquestions",
+                      "value": 0
+                    },
+                    {
+                      "property": "user.correctquestions",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
                   "$kind": "Microsoft.Foreach",
                   "$designer": {
-                    "id": "9UbvW9"
+                    "id": "DElNiL"
                   },
                   "index": "dialog.foreach.index",
                   "value": "dialog.foreach.value",
                   "itemsProperty": "dialog.api_response.content.questionsList",
                   "actions": [
                     {
+                      "$kind": "Microsoft.SetProperty",
+                      "$designer": {
+                        "id": "CAFfVc"
+                      },
+                      "property": "user.totalquestions",
+                      "value": "=user.totalquestions+1"
+                    },
+                    {
                       "$kind": "Microsoft.ChoiceInput",
                       "$designer": {
-                        "id": "vv6OlT"
+                        "id": "zjX9ga"
                       },
                       "defaultLocale": "en-us",
                       "disabled": false,
                       "maxTurnCount": 3,
                       "alwaysPrompt": false,
                       "allowInterruptions": true,
-                      "prompt": "${ChoiceInput_Prompt_vv6OlT()}",
+                      "prompt": "${ChoiceInput_Prompt_zjX9ga()}",
                       "choiceOptions": {
                         "includeNumbers": true,
                         "inlineOrMore": ", or ",
@@ -138,43 +289,95 @@
                     {
                       "$kind": "Microsoft.SendActivity",
                       "$designer": {
-                        "id": "fSV2Bv"
+                        "id": "YyxlV4"
                       },
-                      "activity": "${SendActivity_fSV2Bv()}"
+                      "activity": "${SendActivity_YyxlV4()}"
                     },
                     {
                       "$kind": "Microsoft.IfCondition",
                       "$designer": {
-                        "id": "n9b3b6"
+                        "id": "LRSC0x"
                       },
                       "condition": "user.selected == dialog.foreach.value.answerIndex",
                       "actions": [
                         {
                           "$kind": "Microsoft.SendActivity",
                           "$designer": {
-                            "id": "SXDYT5"
+                            "id": "opGnuU"
                           },
-                          "activity": "${SendActivity_SXDYT5()}"
+                          "activity": "${SendActivity_opGnuU()}"
+                        },
+                        {
+                          "$kind": "Microsoft.SetProperty",
+                          "$designer": {
+                            "id": "08sajt"
+                          },
+                          "property": "user.correctquestions",
+                          "value": "=user.correctquestions+1"
                         }
                       ],
                       "elseActions": [
                         {
                           "$kind": "Microsoft.SendActivity",
                           "$designer": {
-                            "id": "g5oD3H"
+                            "id": "eA97fP"
                           },
-                          "activity": "${SendActivity_g5oD3H()}"
+                          "activity": "${SendActivity_eA97fP()}"
+                        },
+                        {
+                          "$kind": "Microsoft.HttpRequest",
+                          "$designer": {
+                            "id": "pNMeia"
+                          },
+                          "method": "GET",
+                          "url": "${settings.quizSource}/api/Bot/GetBingUri/${dialog.foreach.value.prompt}",
+                          "resultProperty": "user.api_response"
+                        },
+                        {
+                          "$kind": "Microsoft.SendActivity",
+                          "$designer": {
+                            "id": "3Cyr43"
+                          },
+                          "activity": "${SendActivity_3Cyr43()}"
                         }
                       ]
                     },
                     {
                       "$kind": "Microsoft.DeleteProperty",
                       "$designer": {
-                        "id": "x2C6go"
+                        "id": "5oYaIK"
                       },
                       "property": "user.selected"
                     }
                   ]
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "lU3rmX"
+                  },
+                  "activity": "${SendActivity_lU3rmX()}"
+                },
+                {
+                  "$kind": "Microsoft.HttpRequest",
+                  "$designer": {
+                    "id": "g4lqvM"
+                  },
+                  "method": "PUT",
+                  "url": "${settings.quizSource}/api/Bot/QuizResult",
+                  "body": {
+                    "email": "${user.email}",
+                    "chapter": "${user.chapter}",
+                    "correctAnsweredQuestions": "${user.correctquestions}",
+                    "totalQuestions": "${user.totalquestions}"
+                  }
+                },
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "KhOgdK"
+                  },
+                  "activity": "${SendActivity_KhOgdK()}"
                 }
               ]
             }
@@ -190,11 +393,18 @@
           ]
         },
         {
-          "$kind": "Microsoft.SendActivity",
+          "$kind": "Microsoft.DeleteProperties",
           "$designer": {
-            "id": "ivzW6v"
+            "id": "igoHOj"
           },
-          "activity": "${SendActivity_ivzW6v()}"
+          "properties": [
+            "user.confirmed",
+            "dialog.api_response",
+            "user.email",
+            "user.chapter",
+            "user.correctquestions",
+            "user.totalquestions"
+          ]
         },
         {
           "$kind": "Microsoft.CancelAllDialogs",

@@ -10,6 +10,14 @@ namespace QuestionsAdmin.Models
     {
         public List<Question> QuestionsList { get; set; }
 
+        public int TotalQuestions { get; set; }
+
+        public int CorrectAnsweredQuestions { get; set; }
+
+        public string LastTakenRelativeTime { get; set; }
+
+        public bool LastTaken { get; set; }
+
         public Questions()
         {
             QuestionsList = new List<Question>();

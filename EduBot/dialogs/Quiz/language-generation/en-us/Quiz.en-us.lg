@@ -13,11 +13,9 @@
 
 
 
-# SendActivity_ivzW6v()
-- Thank you for taking the quiz.
 
 # ChoiceInput_Prompt_ZLIshN()
-- Select a Chapter 
+- Please select a Chapter 
 # SendActivity_5g9RQx()
 -Error in getting questions from remote
 
@@ -31,11 +29,56 @@
 # SendActivity_qwJMAs()
 - Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}
 
-# ChoiceInput_Prompt_vv6OlT()
+
+
+
+
+
+# SendActivity_OJTKnC()
+- Hello ${user.api_response.content.name}. Welcome to Quiz
+
+
+
+
+
+
+# ChoiceInput_Prompt_zjX9ga()
 - Question ${dialog.foreach.index + 1} is ${dialog.foreach.value.prompt}
-# SendActivity_fSV2Bv()
+# SendActivity_YyxlV4()
 -  You answered ${dialog.foreach.value.options [user.selected]}
-# SendActivity_SXDYT5()
+# SendActivity_opGnuU()
 - Your answer is correct. Explaination : ${dialog.foreach.value.explaination}
-# SendActivity_g5oD3H()
+# SendActivity_eA97fP()
 - Your answer is incorrect. Correct answer is ${dialog.foreach.value.options[dialog.foreach.value.answerIndex]}
+
+
+
+# SendActivity_lU3rmX()
+-  You answered ${user.correctquestions} out of ${user.totalquestions} questions correctly.
+
+
+
+
+
+
+
+
+# ConfirmInput_Prompt_6geG95()
+- Do you want to retake this chapter ?
+
+# SendActivity_KhOgdK()
+- Thank you for taking the quiz.
+
+
+
+# SendActivity_RPpNQe()
+- Thank you for attempting the quiz.
+
+
+# SendActivity_qZoATw()
+- It looks like you have already taken this chapter ${dialog.api_response.content.lastTakenRelativeTime} and scored  ${dialog.api_response.content.correctAnsweredQuestions} out of  ${dialog.api_response.content.totalQuestions}.
+
+
+
+# SendActivity_3Cyr43()
+- You can learn more here: ${user.api_response.content.url}

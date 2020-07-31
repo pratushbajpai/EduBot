@@ -86,6 +86,7 @@ namespace QuestionsAdmin.Controllers
             savedQuestion.Prompt = question.Prompt;
             savedQuestion.AnswerIndex = question.AnswerIndex;
             savedQuestion.OptionValues = question.OptionValues;
+            savedQuestion.Chapter = question.Chapter;
             //savedQuestion.Options = question.Options;
 
             return RedirectToAction("Index");  
